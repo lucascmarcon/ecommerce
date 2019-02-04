@@ -14,8 +14,10 @@ $app->config('debug', true);
 
 $app->get('/', function() {
 
-    echo "OK";
-
+    $sql = new main\database\mysql\Sql();
+    $result = $sql->select("SELECT * FROM persons");
+    header("Content-Type: application/json");
+    echo json_encode($result);
 });
 
 $app->run();
